@@ -1399,7 +1399,7 @@
     document.body.style.overflow = '';
   }
 
-  const BOOKLET_PIN = '627001';
+  const BOOKLET_PIN = '527001';
   const pinOverlay = document.getElementById('pinOverlay');
   const pinInputsWrap = document.getElementById('pinInputs');
   const pinInputs = Array.from(pinInputsWrap.querySelectorAll('input'));
@@ -1433,7 +1433,7 @@
     } else {
       pinError.textContent = 'Incorrect PIN. Try again.';
       pinInputsWrap.classList.remove('shake');
-      void pinInputsWrap.offsetWidth; // restart animation
+      void pinInputsWrap.offsetWidth;
       pinInputsWrap.classList.add('shake');
       pinInputs.forEach(inp => inp.value = '');
       pinInputs[0].focus();
@@ -1460,9 +1460,7 @@
 
   bookletCover.addEventListener('click', openPinModal);
   bookletCloseBtn.addEventListener('click', closeBooklet);
-  // Only the X button closes the booklet — no click-outside, no Escape,
-  // matching the letters reader's behavior.
-
+ 
   // ==========================================================
   // PHOTOBOOTH PRINTER ANIMATION
   // Add or remove entries here to change how many photos print.
