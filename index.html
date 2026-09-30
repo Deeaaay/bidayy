@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday lovee!!</title>
+<style>
+  :root {
+    --ink: #1c1a17;
+    --ink-soft: #2a2621;
+    --paper: #f2ede4;
+    --paper-dim: #cfc7b8;
+    --amber: #c9974f;
+    --amber-dim: #a17a3d;
+
+    --page-w: 320px;
+    --page-h: 440px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: Charter, Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  section {
+    min-height: 65vh;
+    padding: 120px 8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ============================== NAV ============================== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 8vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+    background: linear-gradient(to bottom, rgba(28,26,23,0.9), transparent);
+  }
+
+  nav .logo {
+    font-family: Charter, Georgia, serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  nav .links {
+    display: flex;
+    gap: 32px;
+  }
+
+  nav .links a {
+    color: var(--paper-dim);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+
+  nav .links a:hover { color: var(--amber); }
+
+  /* ============================== LANDING ============================== */
+  #landing {
+    position: relative;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #landing .kicker {
+    color: var(--amber);
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+
+  #landing h1 {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    max-width: 18ch;
+    margin: 0 auto;
+  }
+
+  #landing p.lede {
+    margin: 28px auto 0;
+    max-width: 46ch;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--paper-dim);
+  }
+
+  #landing .scroll-hint {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    color: var(--paper-dim);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .scroll-hint .line {
+    width: 32px;
+    height: 1px;
+    background: var(--paper-dim);
+  }
+
+  /* ---------------- Birthday cake ---------------- */
+  .cake-wrap {
+    margin-top: 88px;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .cake-hint {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--paper-dim);
+  }
+
+  .cake {
+    width: 160px;
+    height: 130px;
+    position: relative;
+    transition: transform 0.25s ease;
+  }
+
+  .cake-wrap:hover .cake {
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  .cake .plate {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 170px;
+    height: 10px;
+    background: rgba(242,237,228,0.15);
+    border-radius: 50%;
+  }
+
+  .cake .tier {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 6px;
+  }
+
+  .cake .tier.bottom {
+    bottom: 10px;
+    width: 140px;
+    height: 46px;
+    background: linear-gradient(180deg, #8a5a2b, #6b4320);
+  }
+
+  .cake .tier.top {
+    bottom: 52px;
+    width: 100px;
+    height: 38px;
+    background: linear-gradient(180deg, var(--amber), var(--amber-dim));
+  }
+
+  .cake .icing {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 10px;
+    background: var(--paper);
+    border-radius: 6px;
+    opacity: 0.9;
+  }
+
+  .cake .tier.bottom .icing { top: -2px; width: 140px; }
+  .cake .tier.top .icing { top: -2px; width: 100px; }
+
+  .candle {
+    position: absolute;
+    bottom: 90px;
+    width: 6px;
+    height: 26px;
+    background: linear-gradient(180deg, #e7c9d8, #c98fae);
+    border-radius: 2px;
+  }
+
+  .candle::after {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 12px;
+    background: radial-gradient(circle at 50% 30%, #ffe9a8, #f2a53c 70%, transparent 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 0.6s ease-in-out infinite alternate;
+  }
+
+  .candle:nth-of-type(1) { left: 20px; }
+  .candle:nth-of-type(2) { left: 47px; }
+  .candle:nth-of-type(3) { left: 74px; }
+
+  @keyframes flicker {
+    0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 0.95; }
+    100% { transform: translateX(-50%) scale(1.1) rotate(2deg); opacity: 1; }
+  }
+
+  /* ---------------- Confetti ---------------- */
+  .confetti-piece {
+    position: fixed;
+    top: -20px;
+    width: 8px;
+    height: 14px;
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: 200;
+    animation: confettiFall linear forwards;
+  }
+
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(105vh) rotate(var(--spin));
+      opacity: 0.9;
+    }
+  }
+
+  /* ============================== ABOUT ============================== */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 6vw;
+    align-items: center;
+  }
+
+  #about .printer-scene { order: 1; }
+  #about .about-copy { order: 2; }
+
+  #about .tag {
+    color: var(--amber);
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  #about h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+  }
+
+  #about .copy {
+    margin-top: 24px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--paper-dim);
+    max-width: 52ch;
+  }
+
+  #about .copy + .copy { margin-top: 16px; }
+
+  /* ---------------- Photobooth printer animation ---------------- */
+  .printer-scene {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    min-height: 480px;
+    overflow: visible;
+  }
+
+  .printer-body {
+    position: relative;
+    width: 220px;
+    height: 130px;
+    background: linear-gradient(155deg, #3a3630, #211f1b);
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+    z-index: 5;
+  }
+
+  .printer-body::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 8px;
+    background: #0c0b09;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+  }
+
+  .printer-light {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 8px var(--amber);
+    animation: blink 1.6s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .printer-label {
+    position: absolute;
+    bottom: 16px;
+    left: 22px;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: rgba(242,237,228,0.4);
+    text-transform: uppercase;
+  }
+
+  /* Photos emerge from the slot and stack in a loose fan below it */
+  .photo {
+    position: absolute;
+    top: 96px;
+    left: 50%;
+    width: 118px;
+    height: 148px;
+    background: var(--paper);
+    border-radius: 2px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    padding: 8px 8px 26px;
+    z-index: 1;
+    opacity: 0;
+    transform: translate(-50%, 0) rotate(0deg);
+    animation: printOut 1s ease forwards;
+  }
+
+  .photo .frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 1px;
+  }
+
+  @keyframes printOut {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, 0) rotate(0deg);
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: translate(calc(-50% + var(--x)), var(--y)) rotate(var(--rot));
+    }
+  }
+
+  /* ---------------- Birthday letters / guestbook ---------------- */
+  #letters {
+    align-items: center;
+    text-align: center;
+  }
+
+  #letters .tag {
+    color: var(--amber);
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  #letters h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 14px;
+  }
+
+  #letters .sub {
+    color: var(--paper-dim);
+    max-width: 50ch;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+
+  /* --- Book cover (closed state) --- */
+  .cover-card {
+    width: 220px;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  .cover-face {
+    width: 220px;
+    height: 300px;
+    border-radius: 3px 8px 8px 3px;
+    box-shadow: -6px 0 0 rgba(0,0,0,0.25) inset, 0 18px 40px rgba(0,0,0,0.45);
+    background: linear-gradient(155deg, #8a5a2b, #4a3319);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px 22px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .cover-card:hover .cover-face {
+    transform: translateY(-8px);
+    box-shadow: -6px 0 0 rgba(0,0,0,0.25) inset, 0 26px 50px rgba(0,0,0,0.55);
+  }
+
+  .cover-face .cover-title {
+    font-family: Charter, Georgia, serif;
+    font-size: 1.5rem;
+    color: var(--paper);
+    text-align: left;
+    line-height: 1.25;
+  }
+
+  .cover-face .cover-sub {
+    font-size: 0.85rem;
+    color: rgba(242,237,228,0.7);
+    text-align: left;
+  }
+
+  .cover-card .cover-label {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--paper-dim);
+  }
+
+  /* --- Reader overlay --- */
+  .reader-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 9, 8, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+    transition: background 0.5s ease;
+  }
+
+  .reader-overlay.active {
+    background: rgba(10, 9, 8, 0.88);
+    pointer-events: auto;
+  }
+
+  .book-wrap {
+    position: fixed;
+    transform-origin: center center;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+    opacity: 0;
+  }
+
+  .reader-overlay.active .book-wrap {
+    opacity: 1;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: -48px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(242,237,228,0.3);
+    background: transparent;
+    color: var(--paper);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .close-btn:hover {
+    background: rgba(242,237,228,0.12);
+    transform: rotate(90deg);
+  }
+
+  .card-stack {
+    position: relative;
+    width: 480px;
+    max-width: 82vw;
+    height: 260px;
+  }
+
+  /* Each card is absolutely stacked; z-index + transform decide
+     stacking order. The current (top) card is at z-index N,
+     already-shown cards sit behind it in the order they were sent back. */
+  .cue-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    padding: 34px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+  }
+
+  .cue-card h3 {
+    font-family: Charter, Georgia, serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .cue-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    white-space: pre-wrap;
+    overflow-y: auto;
+  }
+
+  .cue-card .card-num {
+    position: absolute;
+    bottom: 14px;
+    right: 18px;
+    font-size: 0.75rem;
+    color: var(--paper-dim);
+  }
+
+  /* Sent-to-back animation: card flies down and behind the stack,
+     then jumps to the bottom of the z-order (handled in JS). */
+  .cue-card.sending-back {
+    transform: translateY(40px) scale(0.92) rotate(-2deg);
+    opacity: 0;
+  }
+
+  /* Bring-back animation: the previous card starts dropped and faded
+     (same look as sending-back), then settles onto the top of the stack. */
+  .cue-card.returning {
+    transform: translateY(40px) scale(0.92) rotate(-2deg);
+    opacity: 0;
+  }
+
+  .reader-controls {
+    position: absolute;
+    bottom: -56px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 14px;
+  }
+
+  .reader-controls button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(242,237,228,0.3);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--paper);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .reader-controls button:hover:not(:disabled) {
+    background: rgba(242,237,228,0.12);
+  }
+
+  .reader-controls button:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  /* ============================================================
+     BOOKLET (separate from the letters cue-cards) — a page-flip
+     reader with its own cover, own overlay, own content array.
+     ============================================================ */
+  #booklet {
+    align-items: center;
+    text-align: center;
+  }
+
+  #booklet .tag {
+    color: var(--amber);
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  #booklet h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 14px;
+  }
+
+  #booklet .sub {
+    color: var(--paper-dim);
+    max-width: 50ch;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+  }
+
+  .booklet-book {
+    position: relative;
+    width: calc(var(--page-w) * 2);
+    height: var(--page-h);
+    perspective: 1800px;
+  }
+
+  .booklet-pages {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: var(--page-w);
+    height: 100%;
+    transform-style: preserve-3d;
+  }
+
+  .booklet-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.9s ease;
+    cursor: pointer;
+  }
+
+  .booklet-page .front,
+  .booklet-page .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 0 16px rgba(0,0,0,0.4);
+    padding: 48px 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .booklet-page .back { transform: rotateY(180deg); }
+  .booklet-page.flipped { transform: rotateY(-180deg); }
+
+  .booklet-page h3 {
+    font-family: Charter, Georgia, serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+
+  .booklet-page p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    text-indent: 1.2em;
+    white-space: pre-wrap;
+  }
+
+  .booklet-page .front.chapter-open {
+    justify-content: flex-start;
+    padding-top: 30%;
+    text-align: center;
+  }
+
+  .booklet-page .front.chapter-open h3 {
+    font-size: 1.7rem;
+    margin-bottom: 28px;
+  }
+
+  .booklet-page .front.chapter-open p {
+    text-align: left;
+    text-indent: 1.2em;
+  }
+
+  .booklet-page .page-num {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    font-size: 0.75rem;
+    color: var(--paper-dim);
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 8vw 60px;
+    color: var(--paper-dim);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 780px) {
+    #about { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Dear love,</div>
+</nav>
+
+<!-- ============================== LANDING ============================== -->
+<section id="landing" style="margin-top: 100px;">
+  <h1>Happy Birthdayyy!!</h1>
+  <span class="kicker">Here's a   little something for you</span>
+
+  <div class="cake-wrap" id="cakeWrap">
+    <div class="cake">
+      <div class="tier top">
+        <div class="icing"></div>
+        <div class="candle"></div>
+        <div class="candle"></div>
+        <div class="candle"></div>
+      </div>
+      <div class="tier bottom">
+        <div class="icing"></div>
+      </div>
+      <div class="plate"></div>
+    </div>
+    <div class="cake-hint">Click the cake</div>
+  </div>
+
+</section>
+
+<!-- ============================== ABOUT ============================== -->
+<section id="about">
+  <div class="about-copy">
+    <h2>Here are some of my favourite moments from this year.</h2>
+    <!--
+    <span class="tag">Wishes</span>
+    <h2>My favourite moments for this year</h2>
+    <p class="copy">
+      Here are some of my favourite moments from this year. 
+    </p>
+    -->
+  </div>
+
+  <!-- ============== PHOTOBOOTH PRINTER ANIMATION ==============
+       Photos are generated in JS (see PHOTO_COLORS array) so you
+       can add/remove printed photos just by editing that array.
+       ============================================================ -->
+  <div class="printer-scene" id="printerScene">
+    <div class="printer-body">
+      <div class="printer-light"></div>
+      <div class="printer-label">Photobooth</div>
+    </div>
+    <!-- .photo elements are injected here by JS, one per array entry -->
+  </div>
+</section>
+
+<!-- ============================== BIRTHDAY LETTERS ============================== -->
+<section id="letters">
+  <span class="tag">Open the book</span>
+  <h2>Wishes from everyone who stopped by</h2>
+  <p class="sub">
+    A little collection of birthday letters from everyone who stopped by. 
+  </p>
+
+  <div class="cover-card" id="lettersCover">
+    <div class="cover-face">
+      <div class="cover-title">Happy<br>Birthday janiceeee</div>
+      <div class="cover-sub" id="lettersCount"></div>
+    </div>
+
+    <!--<div class="cover-label">Letters from everyone who stopped by</div>-->
+    
+  </div>
+</section>
+
+<!-- ============================== BOOKLET (separate feature) ============================== -->
+<section id="booklet">
+  <span class="tag">Or, you can also flip through the booklet made by someone who loves you deeply</span>
+  <h2>Wishes for youuu  </h2>
+  <br>
+  <!--
+      <p class="sub">
+    
+  </p>
+  -->
+
+  <div class="cover-card" id="bookletCover">
+    <div class="cover-face" style="background: linear-gradient(155deg, #3d6b63, #1f342f);">
+      <div class="cover-title">?????</div>
+      <div class="cover-sub">4 pages</div>
+    </div>
+  </div>
+</section>
+
+<footer>Built by the GOAT</footer>
+
+<!-- ============================== LETTERS READER OVERLAY ============================== -->
+<div class="reader-overlay" id="readerOverlay">
+  <div class="book-wrap" id="bookWrap">
+    <button class="close-btn" id="closeBtn" aria-label="Close book">&times;</button>
+    <div class="card-stack" id="cardStack"></div>
+    <div class="reader-controls">
+      <button id="prevBtn">&larr; Back</button>
+      <button id="nextBtn">Next letter &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== BOOKLET READER OVERLAY (separate) ============================== -->
+<div class="reader-overlay" id="bookletOverlay">
+  <div class="book-wrap" id="bookletWrap">
+    <button class="close-btn" id="bookletCloseBtn" aria-label="Close booklet">&times;</button>
+    <div class="booklet-book">
+      <div class="booklet-pages" id="bookletPages"></div>
+    </div>
+    <div class="reader-controls">
+      <button id="bookletPrevBtn">&larr; Prev</button>
+      <button id="bookletNextBtn">Next &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ==========================================================
+  // BIRTHDAY LETTERS — hardcoded here, no write form and no
+  // storage. Add more { name, body } objects to add letters.
+  // ==========================================================
+  const LETTERS = [
+    { name: 'Joen', body: "happy birthdayy jannn!! Happy 21!! Bro u are legal now pls come to sydney plsss, anywayss thank u for being my best best friend and for always being there for me, i hope u’re gonna have an amazing day on your birthday i wish i was there with u todayy and alsoo wishing u all the best and God bless uu alwayss i hopr this year becomes the year where your dreams can come truee!!" },
+    { name: 'Justin', body: "Happy bday nigger wuatb noobbb, hope u get less stomach issues chud" },
+    { name: 'Sabri', body: "happy 21st birthday jann‼️‼️\n\nakhirnya udah umur 21 🤩🤩🤩 A few months ago gw br bnr2 nyadar how all of us have changed alot and grown throughout these years. I'm genuinely really grateful to have met you and have you as a friend all these years and I hope you know that I really appreciate having you in my life ❤️ Thank you for all the encouragement, for believing in me, and for always cheering me on. I don't know if u remember this or not but u once asked me if I will cry when u marry one day and I told u that I don't know but the truth is that thinking about it now has already brought me to tears so I for sure know that I will probably be sobbing the whole ceremony OAKOWKWOWKW \n\nHere's to another year of happiness, peace, wealth, health and prosperity for you. I hope you enjoy today and every day for the rest of your life. May all your hard work pay off in the end and all the good things/opportunities you want in life find their way to you because you genuinely deserve it ❤️ Don't forgot to believe in yourself and remember how capable you are when things don't go your way and if you ever need help or just to talk, I'm only one call away OAKWOWOAKWO I love you jan \n\nPS I prepared something for you and I think it will arrive today. It's something that you told me you've wanted but gw agak lupa lu mau yg warna apa... jadi gw kira2 aja.. semoga suka ‼️" },
+    { name: 'There', body: "Hi jean,\n\n happy birthday i love you and i miss u. i hope u know that ure always in my mind, that ure still my favorite person, and that ill always wish the very best for u. \n\nI know this letter isn't much, but just want to tell u how grateful i am for having u in my life. without you, my life wouldnt feel as worth it as it is. you will always be my bestfriend and ill always be ur best friend as long as u let me. \n\nhold on for a little while okay, i know ure tired and sometimes life is shit, but when that happens please call me. tell me all about it. tell me about everything and nothing. i love you dawg, please remember that im still here. \n\nhappy 21th bday jean i wish u the most love the world could give" },
+    { name: 'Cath', body: "happy 21st birthday jeniswongso! semoga di umur baru ini makin banyak kebahagiaan dan sehat selalu yaa, makasih mamah sudah selalu pusing pusing buat kita, love u bubub 😳🫰🏻(sisanya pribadi ah ya)" },    
+    { name: 'Theo', body: "hello jenis, happy 21st!! unc. wish u all the best with life, semoga ur magang lancar and the rest of ur uni days in binus 🤢 to more “bbq” partys. thx for good friend 👍🏻 ps ur needoh will come next year 🤫" },
+    { name: 'Mar', body: "Panjang umur for more golf and gaming sesh" },
+    { name: 'Heav', body: "happy birthday janice wong, may God bless you and your family, especially your mom because your mom is DA GOAT (info daikon pls,,,), welcome to da 21 club bro" },
+    { name: 'Stef', body: "to janice wong, \n\nhappy 21st birthday jen! wish you all the best & god bless uu🫶 \n\ni hope magang u lancarr - don’t let them steal ur spark💔 i also hope whatever else you wish for comes true, and hopefully for ur 21st u ga sakit perut trus 😭 and ur bladder gedean dkit jd u ga kencing di parkiran lg (marvel critain WOAKWOK) \n\ni hope ur relationship with ur family & friends & everyone u love always brings u joy! \n\nsee u in jkt😋 \n\nlove, \nstef" },
+    { name: 'Chari', body: "happy 21st janicee!!! semogaa panjang umur, happy teruss, lancar future plansnyaa and stop bikin kita punya stroke everytime we read your chat di mancing mania 🩷" },
+    { name: 'Will', body: "happy bday jannn! \n\nI know we ain't close but I hope that maybe someday kt bs turlap rame2 am yg lain HAHAHA anyways, have a happy bday n wish u all the best n hope everything u got going on goes ur way!" },
+    { name: 'Cleon', body: "happy birthday jenis, wish u all the best and god bless u. smoga tahun ini stress hilang and semangat on ur magang. see you next year bro" },
+    { name: 'Reika', body: "Hepi besdey jannn, akhirnya legal uga buat minum' kapan jan mabok'anny lagi mumpung dah legal 🤪" },
+    { name: 'Feli', body: "happy 21st jannn wuatb yaa i hope ur internship goes well!! manifesting a great life and blessings for u ahead, i hope u'll win financially, mentally, physically and emotionally. love u wong <3" },
+    { name: 'alex', body: "HAPPY BIRTHDAY JANICE, \n\nFirst the clichés that we all really do mean: I wish you all the best and hope you reach all your goals! \n\nMay you continue to be blessed with the health and fortitude to withstand whatever, wherever. To more hangouts and concerts!!!  \n\nTalk soon, \nAlex" },
+    { name: 'JC', body: "Happy Birthday Jan, thanks for hanging out with us, always had a great time together and i appreciate for making sure i was always invited, wish you all the best and godspeed" },
+    { name: 'Nat', body: "Hellow wong, happy 21 bdayyyyy! Thankyou for being my friend dengan cara yang paling unexpected 🫶🏻. I hope dengan bertambahnya umur lu, lu bisa makin dewasa but tetep jadi wong yg receh gajelas tawa tiwi. Langgeng trs sama your loply boy semoga kalian nikah biar gua bisa cie2 in. Semoga manusia cengeng satu ini bisa melalui gebrakan' hidup yang bakal dateng kedepannya. I love u a lottttt prend [walau kita jarang ketemu]. Godbless you alwaysss 🫂🫂🫂🫂 & see you soon [gatau kapan] WKWKKW once again hbday cry baby😋🫵🏻" },
+    { name: 'Nay', body: "Happy birthday jepiss!! \nBersyukur bangett ketemu u tapi harusnya kita bisa main lebih awal pas semester 1 biar lebih banyak nyobain makanan GS KWKWKWKWKW. Berteman sama u jujur sangat amat mudah semuanya simple dan cepet I LOVEE IT❤️❤️. Ayuk lebih sering main lagii semoga magangnya cepet beres. LOVE U SO MUACHH💋- nay" },
+    { name: 'Valen', body: "happy birthdayyyy lanice! L forever HEHEHE, i wish you everything the best, God bless you alwaysss lah, pokoknya i pray every good things happen for you, langgeng sama koko darren, miss you and love you L-anice" },
+    { name: 'jb', body: "happy birthday jenicew \n\nhope u get the bakery mom life soon & all the best! bet u miss me badly cuz kita udah ga ketemu every single day. \n\ncheers & enjoy the ride! \nLOVE U ❤️ \n-jb" },
+    { name: 'Andrew', body: "Happy 21st! Wishing you a wild, fun, and beautiful year ahead. May this chapter bring you closer to all your biggest dreams. Ditunggu undangannya lu sama atong yaaa. 🥳💃" },
+    { name: 'Jeff', body: "happy 21st birthday wong! sehat selalu, panjang umur, kaya raya, party terus, seru terus dan langgeng terus sama da ampe nikah ya harus, gw balik jkt kt party again ya🎉🎉🎉🎉🎉🎉" },
+    { name: 'Owen', body: "Happy birthday JW, WUATB GBU trs selalu langgeng sama DA sampe, makin cantik, sehat trs, makin sukses and may all your wishes come true 🙏🏻😋" },
+    { name: 'Sean', body: "Happy birthday JW!! 🥳 Semoga panjang umur, sehat dan happy terus yaa. Semoga langgeng terus juga sama Atong, jangan bosen-bosen sama dia 😂" },
+    
+    
+    // ============== INSERT ADDITIONAL LETTERS HERE ==============
+    // { name: '...', body: '...' },
+
+  ];
+
+  const lettersCountEl = document.getElementById('lettersCount');
+  lettersCountEl.textContent = LETTERS.length + (LETTERS.length === 1 ? ' letter' : ' letters');
+
+  // ==========================================================
+  // READER LOGIC (flipbook) — builds pages from the LETTERS
+  // array above. Two letters share each physical page (front
+  // and back), same as a real book.
+  // ==========================================================
+  const overlay = document.getElementById('readerOverlay');
+  const bookWrap = document.getElementById('bookWrap');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const coverCard = document.getElementById('lettersCover');
+  const cardStackEl = document.getElementById('cardStack');
+
+  let cardOrder = []; // array of card DOM elements, index 0 = currently on top
+  let cardAnimating = false; // blocks clicks while a card is mid-animation
+
+  function buildCards() {
+    cardStackEl.innerHTML = '';
+    LETTERS.forEach((letter, i) => {
+      const card = document.createElement('div');
+      card.className = 'cue-card';
+      // Stack front-to-back in reading order: card 0 on top (highest z-index)
+      card.style.zIndex = LETTERS.length - i;
+      card.innerHTML = `
+        <h3>From ${letter.name}</h3>
+        <p>${letter.body}</p>
+        <span class="card-num">${i + 1} / ${LETTERS.length}</span>
+      `;
+      cardStackEl.appendChild(card);
+    });
+    cardOrder = Array.from(cardStackEl.querySelectorAll('.cue-card'));
+    cardAnimating = false;
+  }
+
+  // Sends the current top card to the back of the stack (both visually
+  // and in z-order), revealing the next card underneath. Cycles back
+  // to the first card automatically after the last one.
+  function nextCard() {
+    if (cardAnimating) return;
+    cardAnimating = true;
+
+    const topCard = cardOrder[0];
+    topCard.classList.add('sending-back');
+
+    setTimeout(() => {
+      // Move it to the end of the order and reset z-indices so it's
+      // now visually behind every other card in the stack.
+      cardOrder.push(cardOrder.shift());
+      cardOrder.forEach((card, i) => {
+        card.style.zIndex = cardOrder.length - i;
+      });
+      topCard.classList.remove('sending-back');
+      cardAnimating = false;
+    }, 500);
+  }
+
+  // Reverse of nextCard: takes the card at the very back of the stack
+  // (the previously shown letter) and brings it back on top. From the
+  // first letter this wraps around to the last one, mirroring how
+  // "next" wraps from the last letter to the first.
+  function prevCard() {
+    if (cardAnimating) return;
+    cardAnimating = true;
+
+    const returningCard = cardOrder[cardOrder.length - 1];
+
+    // Start it dropped/faded with transitions off, then put it on top.
+    returningCard.style.transition = 'none';
+    returningCard.classList.add('returning');
+
+    cardOrder.unshift(cardOrder.pop());
+    cardOrder.forEach((card, i) => {
+      card.style.zIndex = cardOrder.length - i;
+    });
+
+    // Two frames so the browser registers the starting state before
+    // we re-enable the transition and let it settle into place.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        returningCard.style.transition = '';
+        returningCard.classList.remove('returning');
+        setTimeout(() => { cardAnimating = false; }, 500);
+      });
+    });
+  }
+
+  nextBtn.addEventListener('click', nextCard);
+  prevBtn.addEventListener('click', prevCard);
+
+  // ---------- Open animation: card stack grows from the cover's screen
+  // position to a centered, full-size reading position. ----------
+  function openBook() {
+    buildCards();
+
+    const cardRect = coverCard.getBoundingClientRect();
+    const stackWidth = 480;
+    const stackHeight = 260;
+
+    bookWrap.style.transition = 'none';
+    bookWrap.style.width = stackWidth + 'px';
+    bookWrap.style.height = stackHeight + 'px';
+    bookWrap.style.left = cardRect.left + cardRect.width / 2 - stackWidth / 2 + 'px';
+    bookWrap.style.top = cardRect.top + cardRect.height / 2 - stackHeight / 2 + 'px';
+    bookWrap.style.transform = `scale(${cardRect.width / stackWidth})`;
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bookWrap.style.transition = 'left 0.6s cubic-bezier(0.22, 1, 0.36, 1), top 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease';
+        bookWrap.style.left = '50%';
+        bookWrap.style.top = '50%';
+        bookWrap.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    });
+  }
+
+  // ---------- Close animation: reverse of open, returning to the
+  // cover's exact screen position. Only the X button triggers this —
+  // clicking outside or pressing Escape does not close the book. ----------
+  function closeBook() {
+    const cardRect = coverCard.getBoundingClientRect();
+    const stackWidth = 480;
+    const stackHeight = 260;
+
+    overlay.classList.remove('active');
+
+    bookWrap.style.left = cardRect.left + cardRect.width / 2 - stackWidth / 2 + 'px';
+    bookWrap.style.top = cardRect.top + cardRect.height / 2 - stackHeight / 2 + 'px';
+    bookWrap.style.transform = `scale(${cardRect.width / stackWidth})`;
+
+    document.body.style.overflow = '';
+  }
+
+  coverCard.addEventListener('click', openBook);
+  closeBtn.addEventListener('click', closeBook);
+
+  // ==========================================================
+  // BOOKLET ADD PAGES (completely separate from the letters above) —
+  // its own content array, its own page-flip reader. Add more
+  // { front: {...}, back: {...} } objects to add pages.
+  // ==========================================================
+  // ==========================================================
+  // BOOKLET CONTENT — write each chapter as ONE plain string,
+  // as long or short as you like. No need to split it into
+  // front/back yourself — the reader automatically measures and
+  // divides it across as many physical pages as it needs.
+  // Add more strings to this array for more chapters.
+  // ==========================================================
+  const STORY_CHAPTERS = [
+    "Happy birthdayyyy loveeee. u skrng udh bs gamble and clubbing tanpa harus selipin org duit cok although lu gk prnh WKKWKWKWK. tp i dont want to bet against u because somehow everytime we gamble psti i klh tp if u want to go casino ayok gw temenin AOWKWKOWKOWKWOKOK. I hope this year treats you well and semoga u punya wish semuanya terkabul this year. Its already been a decade since i liked you in fifth grade itu pun gw gk ngerti knp lu bs suka gw dari semua options lu jjr you kinda weird OAWKOWKOWKOWKOWK and i still remember 1 moment yang sampe skrng msh ad di kepala gw kek jernih bngt itu pas chiraq mau ksh tau u dia rylan sm i sk u tp kek gw tahan dia bngt because gw malu bngt bgnt bngt (oh fyi iya gw smpe skrng kdng msh malu sm lu kl lu cium gw hehe). I will always support you in whatever you want to do and i will do whatever it takes to make your life easier. I hope this year i can atleast give you a running business AOWOWKOWKOWKWOK because thats what you wanted the most. I hope that i get to celebrate your upcoming birthdays for as long as im with you mkny jgn putus heheheheh. Im sorry kalo gw orangnya bener' dibawah expectations you banget and im trying to change so that atleast u gk hrs stressin i trs because i terlalu comfy. yk kmrn pas kalif cerita dia putus gr' dia terlalu comfy sm pacarnya and because of that dia putus gw tktnya kt kek gt and thats why i really' want to change so that atleast u dont have to think abt me because ik you got a lot on your plate. ik rn lu lg shitty bngt and times are tough and gw selalu bilang ini tp im always here kl u mau cerita apa' atau mau keluarin unek ap' atau mau complain ttng apa im always ready to listen. yk dl pas kt blm jadian i prayed to God that semoga gw ketemu jodoh yang cocok and semoga janice fine' aja and semoga dia sukses. Habis kita jadian, prayernya berubah jadi 'Tuhan berkatilah janice supaya dia di france nanti dilindungi dan dijauhin dari yang jahat. Berkatilah dia supaya wishes dia semuanya tercapai'. After our big fight, prayernya berubah lagi terus ditambah 'Tuhan berkatilah hubungan darren sm janice gk kenapa' dan baik' aja'. If i could turn back time, i would still confess to you over and over again(walaupun akhir'ny jg jadian heheheheh). gw bkl ttp share my drinks with you, share my food with you, let you pick whatever you want to eat, bawain barang lu biar lu gk ush tenteng' barang, hold your hand, be your 911 when everything is going to shit, lend you my shoes, makan ketoprak bareng (semoga abangnya sehat selalu sm rezeki dia bnyk bair kt bs makan trs hehehe), nntn concerts brng, coba makanan baru sm u,  AND TRAVEL THE WORLD TOGETHERRRR HEHEHE. Oh and btw, i bnrn taro that AP that you bought yesterday for me on my bed eheheh thanks itu cute. If i was reborn in another lifetime, i would still find and choose you over anyone else because i really love you. semoga lu bs lbh bnyk bersabar sm gw jg hehe. Semoga this year you get to run your own business and make corruption type of money KWKWKKWKWK kl iya pls beliin gw AP AOWOWKOWKOWKOWKW no gw hrs bawa lu ke japan dl jalan' and travel sepuasnya before u buy me AP/RM. i will always choose you in every lifetime and jangan pernah mikir gw gk syng lu. I love youuuuuuuuuououououo ",
+
+    // ============== INSERT ADDITIONAL CHAPTERS HERE ==============
+    // "Write as much as you want here — it will flow across pages automatically.",
+
+  ];
+
+  const bookletOverlay = document.getElementById('bookletOverlay');
+  const bookletWrap = document.getElementById('bookletWrap');
+  const bookletPagesEl = document.getElementById('bookletPages');
+  const bookletPrevBtn = document.getElementById('bookletPrevBtn');
+  const bookletNextBtn = document.getElementById('bookletNextBtn');
+  const bookletCloseBtn = document.getElementById('bookletCloseBtn');
+  const bookletCover = document.getElementById('bookletCover');
+
+  // ----------------------------------------------------------------
+  // Hidden probe: an offscreen element styled exactly like a page's
+  // text area, used to measure how many words of a body fit before
+  // the content would overflow. Rebuilt against the current page
+  // size each time buildBooklet runs, so it stays accurate if the
+  // page dimensions ever change.
+  // ----------------------------------------------------------------
+  const probe = document.createElement('div');
+  probe.style.position = 'fixed';
+  probe.style.visibility = 'hidden';
+  probe.style.pointerEvents = 'none';
+  probe.style.left = '-9999px';
+  probe.style.top = '0';
+  document.body.appendChild(probe);
+
+  function getPageContentBox(hasTitle) {
+    // Matches .booklet-page .front/.back padding (48px 36px 40px) and
+    // the page's own width/height custom properties.
+    const pageW = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-w'));
+    const pageH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-h'));
+    const width = pageW - 36 * 2;
+    const titleHeight = hasTitle ? 1.4 * 16 * 1.2 + 16 : 0; // approx h3 line-height + margin
+    const height = pageH - 48 - 40 - titleHeight;
+    return { width, height };
+  }
+
+  // Splits `text` into chunks, each of which fits within one page's
+  // content area at the booklet's font/line-height. Only the first
+  // chunk accounts for title space; continuation chunks assume no title.
+  function splitTextToFitPage(text, hasTitle) {
+    const words = text.split(/\s+/).filter(Boolean);
+    if (words.length === 0) return [''];
+
+    const chunks = [];
+    let remaining = words;
+    let firstChunk = true;
+
+    while (remaining.length > 0) {
+      const box = getPageContentBox(firstChunk && hasTitle);
+      probe.style.width = box.width + 'px';
+      probe.style.fontSize = '0.92rem';
+      probe.style.lineHeight = '1.7';
+      probe.style.fontFamily = getComputedStyle(document.body).fontFamily;
+      probe.style.textIndent = '1.2em';
+      probe.style.whiteSpace = 'pre-wrap';
+
+      // Binary search for the max number of words that fit in box.height.
+      let lo = 1, hi = remaining.length, fit = remaining.length;
+      while (lo <= hi) {
+        const mid = Math.floor((lo + hi) / 2);
+        probe.textContent = remaining.slice(0, mid).join(' ');
+        if (probe.scrollHeight <= box.height) {
+          fit = mid;
+          lo = mid + 1;
+        } else {
+          hi = mid - 1;
+        }
+      }
+
+      // Guard against an impossible fit (e.g. box too small for even
+      // one word) so we never loop forever.
+      if (fit < 1) fit = 1;
+
+      chunks.push(remaining.slice(0, fit).join(' '));
+      remaining = remaining.slice(fit);
+      firstChunk = false;
+    }
+
+    return chunks;
+  }
+
+
+  let bookletPageEls = [];
+  let bookletCurrentPage = 0;
+
+  function buildBooklet() {
+    bookletPagesEl.innerHTML = '';
+
+    // Give each chapter a "Chapter N" title only on its own first page,
+    // then split every chapter's text automatically to fit as many
+    // physical pages as it needs — you never split it by hand.
+    const flatEntries = [];
+    STORY_CHAPTERS.forEach((chapterText, idx) => {
+      flatEntries.push({ title: null, body: chapterText, chapterIndex: idx });
+    });
+
+    const splitEntries = [];
+    flatEntries.forEach(entry => {
+      const chunks = splitTextToFitPage(entry.body, !!entry.title);
+      chunks.forEach((chunk, i) => {
+        splitEntries.push({
+          title: i === 0 ? entry.title : null,
+          body: chunk
+        });
+      });
+    });
+
+    // Re-pair the (possibly larger) list of entries two-per-sheet.
+    const sheets = [];
+    for (let i = 0; i < splitEntries.length; i += 2) {
+      sheets.push([splitEntries[i], splitEntries[i + 1] || null]);
+    }
+
+    sheets.forEach((sheet, i) => {
+      const [front, back] = sheet;
+      const pageEl = document.createElement('div');
+      pageEl.className = 'booklet-page';
+      pageEl.style.zIndex = sheets.length - i;
+      const isFirstPage = i === 0;
+      const firstPageHasTitle = isFirstPage && front && front.title;
+
+      const frontTitleHtml = front && front.title ? `<h3>${front.title}</h3>` : '';
+      const backTitleHtml = back && back.title ? `<h3>${back.title}</h3>` : '';
+      const frontBodyHtml = front ? `<p>${front.body}</p>` : '';
+      const backBodyHtml = back ? `<p>${back.body}</p>` : '';
+
+      pageEl.innerHTML = `
+        <div class="front${firstPageHasTitle ? ' chapter-open' : ''}">
+          ${frontTitleHtml}
+          ${frontBodyHtml}
+          <span class="page-num">${i * 2 + 1}</span>
+        </div>
+        <div class="back">
+          ${backTitleHtml}
+          ${backBodyHtml}
+          <span class="page-num">${i * 2 + 2}</span>
+        </div>
+      `;
+      bookletPagesEl.appendChild(pageEl);
+    });
+    bookletPageEls = Array.from(bookletPagesEl.querySelectorAll('.booklet-page'));
+    bookletCurrentPage = 0;
+    attachBookletPageClicks();
+    updateBookletButtons();
+  }
+
+  function attachBookletPageClicks() {
+    bookletPageEls.forEach((page, i) => {
+      page.onclick = () => {
+        if (i === bookletCurrentPage) bookletFlipNext();
+        else if (i === bookletCurrentPage - 1) bookletFlipPrev();
+      };
+    });
+  }
+
+  function updateBookletZIndex() {
+    bookletPageEls.forEach((page, i) => {
+      page.style.zIndex = i < bookletCurrentPage ? i : bookletPageEls.length - i;
+    });
+  }
+
+  function updateBookletButtons() {
+    bookletPrevBtn.disabled = bookletCurrentPage === 0;
+    bookletNextBtn.disabled = bookletCurrentPage === bookletPageEls.length;
+  }
+
+  function bookletFlipNext() {
+    if (bookletCurrentPage >= bookletPageEls.length) return;
+    bookletPageEls[bookletCurrentPage].classList.add('flipped');
+    bookletCurrentPage++;
+    updateBookletZIndex();
+    updateBookletButtons();
+  }
+
+  function bookletFlipPrev() {
+    if (bookletCurrentPage <= 0) return;
+    bookletCurrentPage--;
+    bookletPageEls[bookletCurrentPage].classList.remove('flipped');
+    updateBookletZIndex();
+    updateBookletButtons();
+  }
+
+  bookletNextBtn.addEventListener('click', bookletFlipNext);
+  bookletPrevBtn.addEventListener('click', bookletFlipPrev);
+
+  function openBooklet() {
+    buildBooklet();
+
+    const cardRect = bookletCover.getBoundingClientRect();
+    const bookWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-w')) * 2;
+    const bookHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-h'));
+
+    bookletWrap.style.transition = 'none';
+    bookletWrap.style.width = bookWidth + 'px';
+    bookletWrap.style.height = bookHeight + 'px';
+    bookletWrap.style.left = cardRect.left + cardRect.width / 2 - bookWidth / 2 + 'px';
+    bookletWrap.style.top = cardRect.top + cardRect.height / 2 - bookHeight / 2 + 'px';
+    bookletWrap.style.transform = `scale(${cardRect.width / bookWidth})`;
+
+    bookletOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bookletWrap.style.transition = 'left 0.6s cubic-bezier(0.22, 1, 0.36, 1), top 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease';
+        bookletWrap.style.left = '50%';
+        bookletWrap.style.top = '50%';
+        bookletWrap.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    });
+  }
+
+  function closeBooklet() {
+    const cardRect = bookletCover.getBoundingClientRect();
+    const bookWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-w')) * 2;
+    const bookHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-h'));
+
+    bookletOverlay.classList.remove('active');
+
+    bookletWrap.style.left = cardRect.left + cardRect.width / 2 - bookWidth / 2 + 'px';
+    bookletWrap.style.top = cardRect.top + cardRect.height / 2 - bookHeight / 2 + 'px';
+    bookletWrap.style.transform = `scale(${cardRect.width / bookWidth})`;
+
+    document.body.style.overflow = '';
+  }
+
+  bookletCover.addEventListener('click', openBooklet);
+  bookletCloseBtn.addEventListener('click', closeBooklet);
+  // Only the X button closes the booklet — no click-outside, no Escape,
+  // matching the letters reader's behavior.
+
+  // ==========================================================
+  // PHOTOBOOTH PRINTER ANIMATION
+  // Add or remove entries here to change how many photos print.
+  // Each entry is a slot. Leave `image: null` to show a plain
+  // placeholder, or set it to swap in a real photo, e.g.
+  // image: 'photo1.jpg'  (works with any image URL or data URI)
+  // ==========================================================
+  const PHOTO_SLOTS = [
+    { image: 'France.jpeg' },
+    { image: 'Anniv.jpeg' },
+    { image: 'Sushiro.jpeg' },
+    { image: 'Seba.jpeg' },
+  ];
+
+  let printerBusy = false; // true while a print run is still animating
+
+  function startPrinter() {
+    const scene = document.getElementById('printerScene');
+    if (!scene || printerBusy) return;
+    printerBusy = true;
+
+    // Remove photos from any previous run so the animation starts fresh.
+    scene.querySelectorAll('.photo').forEach(p => p.remove());
+
+    PHOTO_SLOTS.forEach((slot, i) => {
+      const photo = document.createElement('div');
+      photo.className = 'photo';
+
+      // Fan the resting position/rotation out a bit per photo so the
+      // stack looks tossed rather than perfectly aligned.
+      const spread = (i - (PHOTO_SLOTS.length - 1) / 2) * 150 + (Math.random() * 24 - 12);
+      const rot = (i % 2 === 0 ? -1 : 1) * (8 + Math.random() * 10);
+      const dropY = 190 + i * 26 + (Math.random() * 16 - 8);
+
+      photo.style.setProperty('--x', spread + 'px');
+      photo.style.setProperty('--y', dropY + 'px');
+      photo.style.setProperty('--rot', rot + 'deg');
+      photo.style.animationDelay = (i * 1.1) + 's';
+      photo.style.zIndex = i + 1;
+
+      const frameStyle = slot.image
+        ? `background: url('${slot.image}') center/cover;`
+        : `background: repeating-linear-gradient(45deg, #d8d0bf, #d8d0bf 10px, #cfc6b2 10px, #cfc6b2 20px); display:flex; align-items:center; justify-content:center; color:#8a8270; font-size:0.75rem; text-align:center;`;
+      const frameContent = slot.image ? '' : `Photo ${i + 1}`;
+
+      photo.innerHTML = `<div class="frame" style="${frameStyle}">${frameContent}</div>`;
+      scene.appendChild(photo);
+    });
+
+    // Unlock once the last photo has finished (its delay + the 1s animation).
+    const totalMs = ((PHOTO_SLOTS.length - 1) * 1.1 + 1) * 1000;
+    setTimeout(() => { printerBusy = false; }, totalMs);
+  }
+
+  // Trigger the printer once the About section scrolls into view,
+  // so it feels like it happens "live" rather than on page load.
+  const aboutObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startPrinter();
+        aboutObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+
+  aboutObserver.observe(document.getElementById('about'));
+
+  // Clicking the printer replays the whole printing animation.
+  const printerBodyEl = document.querySelector('.printer-body');
+  printerBodyEl.style.cursor = 'pointer';
+  printerBodyEl.addEventListener('click', startPrinter);
+
+  // ==========================================================
+  // BIRTHDAY CAKE + CONFETTI
+  // ==========================================================
+  const cakeWrap = document.getElementById('cakeWrap');
+  const CONFETTI_COLORS = ['#c9974f', '#e7c9d8', '#7d9e8f', '#f2ede4', '#c98fae'];
+
+  function spawnConfettiPiece() {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.background = CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)];
+    piece.style.setProperty('--spin', (Math.random() * 720 - 360) + 'deg');
+    piece.style.animationDuration = (2.5 + Math.random() * 2) + 's';
+    piece.style.animationDelay = (Math.random() * 0.4) + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    document.body.appendChild(piece);
+
+    // clean up after it falls so the DOM doesn't accumulate nodes
+    piece.addEventListener('animationend', () => piece.remove());
+  }
+
+  // One burst of confetti (used by the cake click).
+  function launchConfetti() {
+    for (let i = 0; i < 120; i++) spawnConfettiPiece();
+  }
+
+  // Confetti that keeps spawning for `durationMs`, then stops. Pieces
+  // already in the air finish falling on their own.
+  function confettiForDuration(durationMs) {
+    const start = performance.now();
+    const timer = setInterval(() => {
+      if (performance.now() - start >= durationMs) {
+        clearInterval(timer);
+        return;
+      }
+      for (let i = 0; i < 6; i++) spawnConfettiPiece();
+    }, 50);
+  }
+
+  cakeWrap.addEventListener('click', launchConfetti);
+
+  // On page load, rain confetti for 2.5 seconds.
+  confettiForDuration(2500);
+</script>
+
+</body>
+</html>
